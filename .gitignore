@@ -1,0 +1,25 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+*.p12
+key.txt
+config.json
+
+# Working artifacts produced by running the skills (repo root only —
+# must not match skills/*/references/reader-report.md)
+/working-report.md
+/reader-report.md
+/out_*.md
+*.log
+
+# Language/tooling
+__pycache__/
+*.py[cod]
+node_modules/
