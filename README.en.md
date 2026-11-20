@@ -1,41 +1,32 @@
 # multi-perspective-research
 
-> Cross-validated deep research — label every claim as independently corroborated, single-source, contested, or unfound.
+> Multi-perspective research that traces each claim to its original evidence.
 
-A **self-contained Markdown instruction pack**: a `SKILL.md` with YAML frontmatter, plus on-demand `references/`. Any agent that honours the SKILL.md convention (DeepSeek Harness, Claude Code, ZCode, …) can use it by dropping the directory into its skills root — no binaries, no keys, no network service required.
+The skill includes `SKILL.md`, reference documents, and a Python citation checker.
 
----
+## Evidence status
 
-## What problem it solves
+Trace every claim to its original evidence. Several reports repeating one announcement share a single basis for the reported fact. An independent measurement can support the facts it covers. A single authoritative record can establish facts within its remit, such as a regulation's effective date.
 
-A flat search answers *"what does the web say about X"*. This skill answers *"**which parts of X are independently corroborated, and which rest on a single source**"*.
-
-Reliability is not a property of a source. It is the property of **independent paths meeting on the same evidence**. Send several lanes with genuinely different reasons to care after the topic, forbid them from talking to each other, and see which conclusions they reach independently. A lane that finds one page ten times is one lane, not ten.
-
-### Evidence convergence grades
-
-| Grade | Meaning |
-|---|---|
-| A converged | Several non-communicating independent lanes landed on the same conclusion |
-| B corroborated | At least two independent domains agree |
-| C single-source | Only one source says it; labelled as such |
-| D contested | Sources contradict each other; the conflict is laid out openly |
-| E unfound | Budget exhausted with no source able to answer; say so plainly |
-
----
+| Status | Meaning |
+| --- | --- |
+| Independently corroborated | Independent original evidence supports the same scoped claim. |
+| Single source | One original source has been verified. State its scope and limits. |
+| Disputed | Evidence conflicts after aligning the scope, period, version, and units. |
+| Insufficient evidence | The search ran and yielded too little evidence to answer. |
+| Access blocked | A relevant search or source could not be accessed. |
+| Outside coverage | A relevant question could not be investigated within the run. |
 
 ## Six steps
 
-1. **Read the world's structure, not the topic** — fetch 2–4 real artifacts (Wikipedia sections, rival docs' TOCs, regulator headings) and derive the orthogonality lanes from *their* structure. Angles you invent yourself are usually one angle in three hats.
-2. **Write the budget down first** — 3 lanes + 1 baseline-facts lane × 3 rounds × 2–3 queries ≈ 36 retrievals. Running out of budget is a designed event, not an accident.
-3. **Run lanes in parallel, independently** — snippets are leads, not evidence; fetch the page. If nothing can answer, write "no source answers this" — never fill the hole from model memory.
-4. **Converge and score** — cluster by *domain*, not URL, then grade every claim A/B/C/D/E.
-5. **Write two artifacts** — `working-report.md` (mechanism visible, auditable) and `reader-report.md` (mechanism invisible, the product).
-6. **Polish in a fresh pass, then a mechanical gate** — grep for mechanism leakage, assert citation parity, verify grade fidelity, forbid new facts.
+1. Define the question and report paths. Set separate limits for searches, page reads, and follow-up checks.
+2. Develop distinct questions from real material, including a baseline check of the facts.
+3. Search independently, read the original material, and log findings and gaps.
+4. Trace the evidence behind each claim. Recheck important disagreements and search for counterexamples.
+5. Draft both reports. Validate citation numbers and URLs, then check claims and qualifications against their sources.
+6. Archive `working-report.md` and use the full text of `reader-report.md` as the final reply.
 
-The reply to the user is `reader-report.md` verbatim, nothing added.
-
-Full procedure: [SKILL.md](SKILL.md).
+See the full procedure in [SKILL.md](SKILL.md).
 
 ---
 
@@ -69,7 +60,7 @@ Open [`SKILL.md`](SKILL.md) — it explains itself.
 
 ## Dependencies
 
-This skill contains no code; retrieval is delegated to the host's search tools. It cites `anysearch` / `agent-reach` as example backends — a host's `web_search` / `web_fetch` works just as well.
+Research uses the host's search and page-reading tools. The citation checker uses the Python standard library. See the [reader report and validation guide](references/reader-report.md).
 
 ---
 
@@ -81,13 +72,15 @@ multi-perspective-research/
 ├── README.en.md           English version
 ├── LICENSE                MIT
 ├── SKILL.md               main instruction (drop straight into a skills root)
-└── references/
-    ├── execution-trace.md source-level trace of the STORM mechanism this abstracts
-    └── reader-report.md   full Step 6 spec + the five-check verification gate
+├── references/
+│   ├── execution-trace.md trace of the STORM implementation
+│   └── reader-report.md   reader report format and validation
+└── scripts/
+    └── check_report.py    citation checker
 ```
 
 ## License
 
 [MIT](LICENSE) © dgagf111
 
-The questioning mechanism is derived from [Stanford STORM](https://github.com/stanford-oval/storm); `references/execution-trace.md` records its source-level parameters and the two gaps this skill closes.
+The questioning workflow draws on [Stanford STORM](https://github.com/stanford-oval/storm). The [execution trace](references/execution-trace.md) covers the implementation and its parameters.

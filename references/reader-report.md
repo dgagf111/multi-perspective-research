@@ -1,199 +1,43 @@
-# Step 6 — The reader report
+# 读者稿与验收
 
-Full specification for turning the Step 5 working report into the artifact you actually hand to someone.
+## 组织内容
 
-**Core rule:** the working report is the *proof*; the reader report is the *product*. Both ship. Step 6 never replaces Step 5.
+开篇回答读者关心的问题，连同决定结论能否成立的限制。需要比较时，用表格对齐版本、定义、时间和范围。正文按读者要作的判断组织。同一个结论在正文和摘要出现时，保留相同的范围和证据措辞。
 
-**Delivery rule:** the reader report is written to `reader-report.md`, and the user's final reply **is that file's content, verbatim and complete** — see §5.5 and §7.
+设置「交叉验证情况」，依次保留本次存在的多源印证、单一来源、有分歧、待核实问题。也可以用一张有证据列的表格呈现。每条重要判断应能回到工作底稿。
 
----
+- **多源印证**写出相互独立的原始材料或调查机构，并指出各自核实了什么。
+- **单一来源**区分有直接原文依据的事实与待补证的自报、估算、转述。限定在来源实际覆盖的范围内。
+- **有分歧**列出双方的表述、可比口径和来源。已可用公开口径解释的差异在正文说明。
+- **待核实问题**分别说明证据不足、访问受阻和未覆盖，保留关键问题以及实际检索方向。查询词可用行内代码，受阻材料的链接可作为线索。能厘清的具体局限随结论一起交代。
 
-## 1. Run it as a separate pass
+注明检索截止日期。版本或口径会改变判断时，明确提醒适用条件。用读者能理解的来源名称和依据写作，视角编号、预算和验收记录保存在底稿。
 
-Give the polishing pass **only the working report file**. Do not give it:
+## 统一引用
 
-- the lane prompts or lane descriptions,
-- the lane logs,
-- your own reasoning or the conversation that produced them,
-- any sibling draft.
-
-A pass that has seen the machinery will leak the machinery — it will reach for "the capital lane found…" because that is the most compressed way to say it. A fresh context has no such shortcut, and is forced into reader language.
-
-If the polishing pass is run by you in the same context, expect leakage; treat 6d.1 as a hard gate rather than a formality.
-
----
-
-## 2. Term mapping (fixed — not a judgment call)
-
-| Working report | Reader report |
-|---|---|
-| lane / perspective / lane 0 | delete. Readers get findings, not org charts. |
-| orthogonality check | delete entirely |
-| anchor artifact | delete entirely (the *structure* it lent survives as ordinary section order) |
-| budget, round | delete entirely |
-| **A — Converged** | **由多个相互独立的来源印证的结论**，并要求列出**两条独立路径** |
-| **B — Corroborated** | **由两个独立来源印证**（同一来源渠道内，强度低于 A） |
-| **C — Single-source** | **目前只有单一来源的结论（请当线索，不要当事实）** |
-| **D — Contested** | **来源之间存在冲突或口径不一致的数据** → 拆成具名「冲突一…N」，两侧并列 |
-| **E — Unfound** | **检索未能回答的问题**（标题用读者视角，不用 "level E") |
-| source provenance `lane/round/query` | delete from the source list; keep plain `[n] <url> — <what it supports>` |
-| `query "<q>"` used as evidence trail | delete from prose; **preserve verbatim in the E-section's search-direction column** — this is the one place it earns its keep, because it lets the reader re-run and confirm the gap |
-| `inferred-by-me` | **本文推论（来源并未连接这两件事）** |
-| fetch failure / bot_blocked / paywall | **未能获取全文的来源（不作为证据）** — a list at the end |
-
-**Renumbering:** merge duplicate URLs before numbering. The reader report's citation set must **equal** the working report's source set — same sources, possibly renumbered. If a source disappears, that is a defect, not a tidy-up.
-
----
-
-## 3. Reader-report skeleton
+正文和表格用 `[1]`、`[2]` 等正整数编号，分别放在所支持的内容后。多个引用可写 `[1] [2]`。在底稿和读者稿各设一处 `## 来源`，每个来源占一行，格式一致。
 
 ```markdown
-# <Title that states the question, not the method>
-
-**调研截止日：<date>**
-
-> **一分钟版本。** <the whole conclusion in one paragraph, including the caveat that makes it valid>
-
-## 一、结论
-<layered verdict as a table: 问题 | 答案 | 依据强度>
-
-## 二、前提：<why the naive framing is invalid>
-<the caliber/definition problem, early. This section prevents most downstream misuse.>
-
-## 三…N、<主体章节>
-<findings grouped by theme; prose carrying the load, numbers inline, [n] citations>
-
-## 交叉验证情况
-### 由多个相互独立的来源印证的结论   <table: 结论 | 两条独立路径>
-### 目前只有单一来源的结论          <table: 结论 | 唯一来源>  ← flag self-interested sources
-### 来源之间存在冲突或口径不一致     <#### 冲突一…N, both sides, never averaged>
-### 检索未能回答的问题               <table: 没能找到什么 | 检索方向>
-
-## 使用这些结论时必须同时交付的判断
-<the few meta-judgements that must travel with any conclusion>
-
-## 数据截止与版本提醒
-## 来源
-### 未能获取全文的来源（不作为证据）
+- [1] <https://example.org/original> — 原始发布文件
 ```
 
-### Why the cross-validation section is structured this way
+底稿和读者稿共用同一套编号与网址。每个编号只对应一个来源，每个网址只列一次。把拟引用的网页列入底稿的 `## 来源`，其余网页保存在检索和访问记录。用户提供的本地材料或本次复测，在正文写明材料名称、定位或复测范围，在底稿记录具体依据。成稿复核中调整引证时，先核对底稿，再同步两边来源表。当前没有可编号的网页来源时，来源节填写一行 `本次没有可引用的来源。`。
 
-It is the reader-facing form of Step 4c. Four subsections, in this order, each answering a different reader question:
+## 验收
 
-1. **独立印证** — *What can I treat as settled?* Naming **both paths** is the whole value; "multiple sources agree" without saying which is a level collapse, not a level A.
-2. **单一来源** — *What needs a second look before I rely on it?* Also the only place to flag that a source is **self-interested** (a vendor, a recruiter, an integrator, a founder) — a qualification a reader cannot recover once it is dropped.
-3. **冲突** — *Where will I get burned if I quote only the convenient half?* Every D row, both sides, named, never averaged. Say explicitly which pairs are "both true, different quantities" (e.g. unit cost falling while total cost rises) versus genuinely irreconcilable.
-4. **未能回答** — *What do we not know?* Unfound is a finding. Give the search direction so the reader can check for themselves.
+先运行引用校验。脚本只依赖 Python 标准库。
 
----
-
-## 4. Defect classes to expect on rewrite
-
-Reading an audit-shaped document in order to rewrite it surfaces contradictions the original buried. These recur; fix them and report what you fixed.
-
-| Class | What it looks like | Fix |
-|---|---|---|
-| **Grade conflict** | Same figure is A in one table and C in another | Unify. Prefer the **lower** grade; then check whether the surrounding table header still claims level A. |
-| **Mis-attributed number** | A figure gets re-paired with the wrong source during compression | Re-derive each figure → source pair from the working report, row by row |
-| **Naming drift** | One source group called two different things in two sections | Pick one name, apply everywhere |
-| **Internal contradiction** | Two mutually exclusive framings of the same datapoint in different sections | Resolve explicitly; if unresolved, it belongs in 冲突 |
-| **Bilingual splice** | A stray English word inside Chinese prose | Proofread; grep for stray Latin runs |
-| **Mechanism residue** | "lane", "A 级", "轮次" surviving the rewrite | Gate 6d.1 |
-| **Caveat stripping** | The number survives; the clause bounding it does not | Gate 6d.3 — this is the most dangerous defect, because the reader cannot detect it |
-
-**Caveat stripping deserves emphasis.** A summary that keeps `+15–25%` but drops `估算，非审计` produces a document that is *shorter and more confident and wrong to act on*. Detect it by checking, for every number carried over, that its bounding clause survived too.
-
----
-
-## 5. Verification gate — run before delivering
-
-Do not ship on impression. Run these mechanically and **record the results in the working report** (never in the reader report or the reply — §5.5, §7).
-
-### 5.1 Mechanism leakage = 0
-
-```powershell
-$f = "<reader-report.md>"
-$t = Get-Content $f -Raw
-foreach ($p in @('lane','Lane','（A）','（B）','（C）','（D）','（E）',
-                 'A 级','B 级','C 级','D 级','E 级',
-                 '锚定','正交','收敛','round','视角独立')) {
-  $c = ([regex]::Matches($t, [regex]::Escape($p))).Count
-  if ($c -gt 0) { "LEAK: '$p' x$c" }
-}
+```text
+python -X utf8 "<技能目录>/scripts/check_report.py" "<底稿路径>" "<读者稿路径>"
 ```
 
-Permitted survivors: the verbatim queries inside the E-section's search-direction column, and the fetch-failure list.
+检查两份来源表的格式、重复编号、重复网址和编号对应的网址，同时检查成稿正文的引用集合与来源表是否一致。无 Python 时用同一标准手工核对，记录实际检查方式。
 
-### 5.2 Citation integrity — body set == source list
+结构检查完成后，另做一次原文对照。可委派独立复核者，给它底稿、读者稿和本页，主代理复核其结论。
 
-```powershell
-$all = Get-Content $f -Raw
-$body = ($all -split '## 来源')[0]
-$src  = ($all -split '## 来源')[1]
-$in = @([regex]::Matches($body,'\[(\d{1,2})\]') | ForEach-Object { [int]$_.Groups[1].Value } | Sort-Object -Unique)
-$li = @([regex]::Matches($src,'(?m)^(\d{1,2})\. https') | ForEach-Object { [int]$_.Groups[1].Value } | Sort-Object -Unique)
-"orphans (cited, unlisted): " + (@($in | Where-Object { $li -notcontains $_ }) -join ',')
-"strays  (listed, uncited): " + (@($li | Where-Object { $in -notcontains $_ }) -join ',')
-```
+1. 对照每条影响结论的陈述，确认引文能支持所用数字、单位、时期、版本、对象和限定语。
+2. 检查同源转述、未确认的独立性、单源归属和发布者利益关系是否得到正确表达。
+3. 检查重要分歧双方和未解决的问题是否保留。证据不足、读取受阻和未覆盖按各自状态陈述。
+4. 通读正文，按主文核对报告路径和执行记录的归档位置。用语境判断内部术语是否有必要保留，允许来源名、真实技术术语和原样记录的查询词。
 
-Both must be empty. If auto-assigning numbers left gaps, renumber the list so the set is contiguous.
-
-### 5.3 Level fidelity
-
-- Every **A** row from the working report appears under 独立印证 **with both paths named**.
-- Every **B** row appears, marked as same-channel.
-- Every **C** row appears under 单一来源, with self-interest flagged where applicable.
-- Every **D** row appears as a named 冲突, **both sides intact, nothing averaged away**.
-- Every **E** row appears under 未能回答 with a search direction.
-- The counts in the reader report match the working report's summary counts, or you state why not.
-
-### 5.4 No new facts
-
-Every number and named entity in the reader report traces to the working report. Anything newly introduced is either marked 本文推论 or it does not ship.
-
-### 5.5 Record the gate results (in the working report, not to the user)
-
-Append the gate line to the **working report** — the end of `working-report.md` or a sibling log file:
-
-```
-leakage 0 · citations 80/80 (orphans 0, strays 0) · A 9/B 3/C 28/D 8/E 10 all present · no new facts
-```
-
-A recorded gate line is worth materially more than a silent ship — but it is evidence *about* the machinery, so it stays with the machinery. Putting it in `reader-report.md`, or in the reply, is a delivery-rule violation (§7).
-
----
-
-## 6. What Step 6 is not allowed to do
-
-- **Not allowed to drop a contradiction to make the prose cleaner.** Clean structure may reveal a conflict more sharply; it may never dissolve one.
-- **Not allowed to promote a level.** Rewriting is not new evidence. If a claim reads weak, the fix is wording, not a better grade.
-- **Not allowed to fill an unfound row.** A short list is honest; an invented entry is the failure this whole skill exists to prevent.
-- **Not allowed to become the only artifact.** Keep the working report. If someone later asks "how do you know", the answer must be a file, not a memory.
-
----
-
-## 7. Delivery — the reply is `reader-report.md`, verbatim
-
-The last step is mechanical; do not reinterpret it.
-
-1. Read `reader-report.md` back from disk — the file, not your memory of writing it.
-2. Your entire message body **is that content, complete and unchanged**: same headings, same order, same numbers, same links, same wording.
-3. Emit nothing around it.
-
-**Forbidden in the reply** (each has been an observed failure):
-
-| Forbidden | Example |
-|---|---|
-| preamble / framing | "已完成深度调研，以下是报告：" |
-| sign-off / offer | "如果需要进一步分析请告诉我" |
-| summary or highlights | a TL;DR that duplicates the report |
-| gate line / check counts | "leakage 0 · citations 80/80 · 检查通过" |
-| mechanism mentions | lanes, perspectives, rounds, levels, budgets, working report, subagents |
-| file logistics | "报告已保存到 …" |
-| content edits | retyping, trimming, reordering, merging, translating, reformatting |
-| silent corrections | fixing a typo, softening a claim, adding a citation |
-
-If the report already contains a date line, a summary section, or a sentence that reads like a caveat to the reader, it ships as written. **Editing the report to improve the reply and editing the reply to improve the report are both violations.** The only way to change what the user sees is to change `reader-report.md` (through §2–§5) and re-emit it in full.
-
-Do not attach extra artifacts to the reply: no `present` cards, no file list, no "报告已保存" note. Emitting the file's content directly, via a harness mode that sends file content as the message, is the only acceptable substitute — and it must send the content unchanged.
+发现事实、引用或口径问题时先修底稿，再更新读者稿并重复受影响的检查。记录实际运行的检查、结果以及仍未核实的事项。如何回复以 [主文交付规则](../SKILL.md#6-交付) 为准。
