@@ -19,9 +19,9 @@ Trace every claim to its original evidence. Several reports repeating one announ
 
 ## Six steps
 
-1. Define the question and report paths. Set separate limits for searches, page reads, and follow-up checks.
-2. Develop distinct questions from real material, including a baseline check of the facts.
-3. Search independently, read the original material, and log findings and gaps.
+1. Define the question and report paths. Budget searches and page reads for the initial batch, added perspectives, and synthesis checks.
+2. Start with four perspectives. One covers basic facts. Derive the other three from specific passages in the original material. [How to select and read sources](references/perspective-discovery.md)
+3. Search independently and read the original material. After each batch, review unused findings. Add a perspective when the material reveals a question that can affect the decision, remains uncovered, and can be investigated.
 4. Trace the evidence behind each claim. Recheck important disagreements and search for counterexamples.
 5. Draft both reports. Validate citation numbers and URLs, then check claims and qualifications against their sources.
 6. Archive `working-report.md` and use the full text of `reader-report.md` as the final reply.
@@ -73,8 +73,9 @@ multi-perspective-research/
 ├── LICENSE                MIT
 ├── SKILL.md               main instruction (drop straight into a skills root)
 ├── references/
-│   ├── execution-trace.md trace of the STORM implementation
-│   └── reader-report.md   reader report format and validation
+│   ├── execution-trace.md       trace of the STORM implementation
+│   ├── perspective-discovery.md source selection and discovery of new perspectives
+│   └── reader-report.md         reader report format and validation
 └── scripts/
     └── check_report.py    citation checker
 ```

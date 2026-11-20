@@ -19,9 +19,9 @@
 
 ## 六步流程
 
-1. 确定问题和报告路径，分别设置搜索、读页和合并核查额度。
-2. 从官方文档、监管分类等真实资料提出不同的检索问题，保留基本事实视角。
-3. 独立查询并读取原文，记录具体证据和访问缺口。
+1. 确定问题和报告路径，为首批、追加视角与合并核查安排搜索和读页额度。
+2. 从实际资料确定首批四个视角。一个核对基本事实，另外三个各自有可定位的原文和取证方向。 [选材与提取说明](references/perspective-discovery.md)
+3. 独立查询并读取原文。每批完成后复查未使用的线索，遇到会影响判断且能独立查证的新问题时追加视角。
 4. 按结论追溯原始依据，核查可比的分歧和可能推翻判断的反例。
 5. 写底稿与读者稿，校验编号与网址，再逐条对照事实和限定语。
 6. 留存 `working-report.md`，将 `reader-report.md` 全文作为最终回复。
@@ -73,8 +73,9 @@ multi-perspective-research/
 ├── LICENSE                MIT
 ├── SKILL.md               主指令（可直接放进 skills 根目录）
 ├── references/
-│   ├── execution-trace.md STORM 源码级执行追踪
-│   └── reader-report.md   读者稿格式与验收说明
+│   ├── execution-trace.md       STORM 源码级执行追踪
+│   ├── perspective-discovery.md 按题型选材与发现新视角
+│   └── reader-report.md         读者稿格式与验收说明
 └── scripts/
     └── check_report.py    引用校验
 ```
